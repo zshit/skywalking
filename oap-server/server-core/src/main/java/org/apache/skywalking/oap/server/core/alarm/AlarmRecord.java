@@ -62,7 +62,7 @@ public class AlarmRecord extends Record {
     private String id1;
     @Column(columnName = START_TIME)
     private long startTime;
-    @Column(columnName = ALARM_MESSAGE, matchQuery = true)
+    @Column(columnName = ALARM_MESSAGE, length = 500, matchQuery = true)
     private String alarmMessage;
 
     public static class Builder implements StorageBuilder<AlarmRecord> {
