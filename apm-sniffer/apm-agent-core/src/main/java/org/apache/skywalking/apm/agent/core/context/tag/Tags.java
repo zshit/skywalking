@@ -85,6 +85,14 @@ public final class Tags {
 
     public static final StringTag LOGIC_ENDPOINT = new StringTag(12, "x-le");
 
+    public static final StringTag DB_RESULT = new StringTag(13, "db.result");
+
+    public static final StringTag RESPONSE = new StringTag(14, "http.response");
+
+    public static final StringTag FEIGN_PARAMS = new StringTag(15, "feign.params");
+
+    public static final StringTag FEIGN_RESPONSE = new StringTag(16, "feign.response");
+
     /**
      * Creates a {@code StringTag} with the given key and cache it, if it's created before, simply return it without
      * creating a new one.

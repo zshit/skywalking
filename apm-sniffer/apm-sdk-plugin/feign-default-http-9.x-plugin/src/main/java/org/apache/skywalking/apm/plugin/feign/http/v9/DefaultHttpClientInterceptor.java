@@ -18,8 +18,13 @@
 
 package org.apache.skywalking.apm.plugin.feign.http.v9;
 
+import static feign.Util.UTF_8;
+import static feign.Util.decodeOrDefault;
 import feign.Request;
 import feign.Response;
+import feign.Util;
+import java.io.IOException;
+import org.apache.skywalking.apm.agent.core.conf.Config.Plugin.Feign;
 import org.apache.skywalking.apm.agent.core.context.CarrierItem;
 import org.apache.skywalking.apm.agent.core.context.ContextCarrier;
 import org.apache.skywalking.apm.agent.core.context.ContextManager;
@@ -82,6 +87,9 @@ public class DefaultHttpClientInterceptor implements InstanceMethodsAroundInterc
         Tags.URL.set(span, request.url());
         SpanLayer.asHttp(span);
 
+        if (Feign.COLLECT_FEIGN_PARAMS) {
+            Tags.FEIGN_PARAMS.set(span, new String(request.body(), request.charset()));
+        }
         Field headersField = Request.class.getDeclaredField("headers");
         Field modifiersField = Field.class.getDeclaredField("modifiers");
         modifiersField.setAccessible(true);
@@ -120,6 +128,17 @@ public class DefaultHttpClientInterceptor implements InstanceMethodsAroundInterc
             if (statusCode >= 400) {
                 span.errorOccurred();
                 Tags.STATUS_CODE.set(span, Integer.toString(statusCode));
+            }
+
+            if (Feign.COLLECT_FEIGN_RESPONSE) {
+                byte[] bodyData = null;
+                try {
+                    bodyData = Util.toByteArray(response.body().asInputStream());
+                    ret = response.toBuilder().body(bodyData).build();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Tags.FEIGN_RESPONSE.set(span, decodeOrDefault(bodyData, UTF_8, ""));
             }
         }
 

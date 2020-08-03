@@ -83,7 +83,7 @@ if [ -z "$M2_HOME" ] ; then
     if expr "$link" : '/.*' > /dev/null; then
       PRG="$link"
     else
-      PRG="`dirname "$PRG"`/$link"
+       ="`dirname "$PRG"`/$link"
     fi
   done
 

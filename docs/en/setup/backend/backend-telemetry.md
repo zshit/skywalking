@@ -9,7 +9,6 @@ telemetry:
     host: ${SW_TELEMETRY_PROMETHEUS_HOST:0.0.0.0}
     port: ${SW_TELEMETRY_PROMETHEUS_PORT:1234}
 ```
-
 but you can set one of `prometheus` or `so11y` to enable them, for more information, refer to the details below.
 
 ## Prometheus

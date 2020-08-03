@@ -319,7 +319,7 @@ public class TracingContext implements AbstractTracerContext {
      * @see ExitSpan
      */
     @Override
-    public AbstractSpan createExitSpan(final String operationName, final String remotePeer) {
+        public AbstractSpan createExitSpan(final String operationName, final String remotePeer) {
         if (isLimitMechanismWorking()) {
             NoopExitSpan span = new NoopExitSpan(remotePeer);
             return push(span);

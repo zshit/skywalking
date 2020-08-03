@@ -42,14 +42,14 @@ public class PluginBootstrap {
         AgentClassLoader.initDefaultLoader();
 
         PluginResourcesResolver resolver = new PluginResourcesResolver();
-        List<URL> resources = resolver.getResources();
+            List<URL> resources = resolver.getResources();
 
-        if (resources == null || resources.size() == 0) {
-            logger.info("no plugin files (skywalking-plugin.def) found, continue to start application.");
-            return new ArrayList<AbstractClassEnhancePluginDefine>();
-        }
+            if (resources == null || resources.size() == 0) {
+                logger.info("no plugin files (skywalking-plugin.def) found, continue to start application.");
+                return new ArrayList<AbstractClassEnhancePluginDefine>();
+            }
 
-        for (URL pluginUrl : resources) {
+            for (URL pluginUrl : resources) {
             try {
                 PluginCfg.INSTANCE.load(pluginUrl.openStream());
             } catch (Throwable t) {

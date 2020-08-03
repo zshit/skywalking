@@ -88,7 +88,7 @@ public class SamplingService implements BootService {
     /**
      * @return true, if sampling mechanism is on, and getDefault the sampling factor successfully.
      */
-    public boolean trySampling() {
+    public boolean  trySampling() {
         if (on) {
             int factor = samplingFactorHolder.get();
             if (factor < Config.Agent.SAMPLE_N_PER_3_SECS) {

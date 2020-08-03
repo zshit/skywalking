@@ -327,6 +327,8 @@ public class Config {
              * request.
              */
             public static boolean COLLECT_HTTP_PARAMS = false;
+
+            public static boolean COLLECT_HTTP_RESPONSE = false;
         }
 
         public static class Toolkit {
@@ -430,6 +432,14 @@ public class Config {
              * parameters, NB. this config item is added for the sake of performance
              */
             public static int HTTP_PARAMS_LENGTH_THRESHOLD = 1024;
+        }
+
+        public static class Feign {
+
+            public static boolean COLLECT_FEIGN_PARAMS = false;
+
+            public static boolean COLLECT_FEIGN_RESPONSE = false;
+
         }
 
         public static class InfluxDB {

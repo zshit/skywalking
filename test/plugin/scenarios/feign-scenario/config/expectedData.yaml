@@ -33,6 +33,7 @@ segmentItems:
       tags:
       - {key: url, value: 'http://localhost:8080/feign-scenario/create/'}
       - {key: http.method, value: POST}
+      - {key: feign.params, value: '{"id": 1, "userName": "test"}'}
       refs:
       - {parentEndpoint: /feign-scenario/case/feign-scenario, networkAddress: 'localhost:8080',
         refType: CrossProcess, parentSpanId: 1, parentTraceSegmentId: not null, parentServiceInstance: not
